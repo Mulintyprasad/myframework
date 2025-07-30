@@ -15,8 +15,6 @@ public class ProperTest extends BaseTest{
  
 	@Test
 	public void registerNewUser() throws IOException{
-
-		initializeDriverAndLaunchApp();
 		String actualTitle = driver.getTitle();
 		String expectedTitle = "Automation Exercise";
 		Assert.assertEquals(actualTitle, expectedTitle, "failed to load the home page");
@@ -44,7 +42,14 @@ public class ProperTest extends BaseTest{
 		System.out.println(registerPage.getLoggedUsername());
 
 		registerPage.deleteAccount();
-		driver.quit();
+	
 		
 	}
+//	
+//	@Test
+//	 public void loginPositive() {
+//		
+//		
+//		
+//	}
 }

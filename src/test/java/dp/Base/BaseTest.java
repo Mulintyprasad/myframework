@@ -9,6 +9,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeTest;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
@@ -16,6 +20,8 @@ public class BaseTest {
 	public WebDriver driver;
 	public Properties prop;
 
+	
+	@BeforeMethod
 	public void initializeDriverAndLaunchApp() throws IOException {
 
 		Properties prop = new Properties();
@@ -41,6 +47,13 @@ public class BaseTest {
 		driver.get(prop.getProperty("url"));
         driver.manage().window().maximize();
 	}
+	
+	@AfterMethod
+	public void TearDown() {
+		
+		driver.quit();
+	}
+	
 
 //	public void launchApp() throws IOException {
 //		initializeDriver();
