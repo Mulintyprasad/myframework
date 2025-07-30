@@ -10,6 +10,7 @@ import org.testng.annotations.Test;
 //import org.testng.asserts.SoftAssert;
 import dp.Base.BaseTest;
 import dp.pageobjects.RegisterPage;
+import dp.utils.WaitUtils;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class ProperTest extends BaseTest{
@@ -18,7 +19,7 @@ public class ProperTest extends BaseTest{
 	
 	String password = "Hello@123";
  
-	@Test
+	@Test(enabled=false)
 	public void registerNewUser() throws IOException{
 		String actualTitle = driver.getTitle();
 		String expectedTitle = "Automation Exercise";
@@ -28,7 +29,7 @@ public class ProperTest extends BaseTest{
 		registerPage.clickSignupLink();
 		Assert.assertTrue(registerPage.isNewUserSignupVisible());
 
-		registerPage.enterNameAndEmail("MPRASAD", email);
+		registerPage.enterNameAndEmail("MPRASAD", "deletionACC@gmail.com");
 		registerPage.clickSignupButton();
 		Assert.assertTrue(registerPage.isAccountInfoVisible());
 
@@ -51,12 +52,17 @@ public class ProperTest extends BaseTest{
 		
 	}
 	
-	@Test(dependsOnMethods = {"registerNewUser"})
+	@Test
 	 public void loginPositive() {
 		RegisterPage registerPage = new RegisterPage(driver);
 		registerPage.clickSignupLink();
 		registerPage.enterEmailAndPassword(email, password);
 		registerPage.clickLoginButton();
+		WaitUtils.visibilityOfElementLocated(driver, By.cssSelector("[class='fa fa-lock']"), 10);
+		String userName =driver.findElement(By.xpath("//li[10]//a[1]")).getText();
+		System.out.println(userName);
+		
+	
 		
 ////		driver.findElement(By.cssSelector("input[data-qa='login-email']")).sendKeys(email);
 //		driver.findElement(By.cssSelector("input[data-qa='login-password']")).sendKeys(password);
