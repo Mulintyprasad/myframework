@@ -33,7 +33,7 @@ public class ProperTest extends BaseTest{
 		registerPage.selectNewsLetter();
 
 		registerPage.enterAddress("Durga", "Prasad", "TESTCOMPANY", "hno 123,testaddress", "address2 test",
-				"Andhra pradesh", "Kurnool", "518001", "9988776655");
+				"TELANGANA", "HYDERABAD", "518001", "9988776655");
 
 		registerPage.clickCreateAccount();
 		Assert.assertTrue(registerPage.isAccountCreatedVisible());
