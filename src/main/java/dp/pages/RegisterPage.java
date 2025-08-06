@@ -1,9 +1,11 @@
-package dp.pageobjects;
+package dp.pages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+
+import dp.utils.WaitUtils;
 
 public class RegisterPage {
 	WebDriver driver;
@@ -207,7 +209,7 @@ public class RegisterPage {
 	}
 
 	public void deleteAccount() {
-		deleteAccountIcon.click();
+		WaitUtils.waitForElementToBeClickable(driver, deleteAccountIcon, 10).click();
 		continueAfterDeleteButton.click();
 	}
 
