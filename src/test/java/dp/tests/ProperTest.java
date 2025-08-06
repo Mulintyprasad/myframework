@@ -8,17 +8,18 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 //import org.testng.asserts.SoftAssert;
 import dp.Base.BaseTest;
-import dp.pageobjects.RegisterPage;
+import dp.pages.RegisterPage;
 import dp.utils.WaitUtils;
 
-public class ProperTest extends BaseTest{
-	
+public class ProperTest extends BaseTest {
+
 	String email = "MPRASAD@gmail.com";
-	
+
 	String password = "Hello@123";
- 
-	@Test(enabled=false)
-	public void registerNewUser() throws IOException{
+	String wrongpassword = "sdf345";
+
+	@Test(priority = 1)
+	public void registerNewUser() throws IOException {
 		String actualTitle = driver.getTitle();
 		String expectedTitle = "Automation Exercise";
 		Assert.assertEquals(actualTitle, expectedTitle, "failed to load the home page");
@@ -45,29 +46,34 @@ public class ProperTest extends BaseTest{
 		registerPage.clickContinue();
 		System.out.println(registerPage.getLoggedUsername());
 
-//		registerPage.deleteAccount();
-	
-		
+		registerPage.deleteAccount();
+		System.out.println("test1");
+
 	}
-	
-	@Test
-	 public void loginPositive() {
+
+	@Test(priority = 2)
+	public void loginPositive() {
 		RegisterPage registerPage = new RegisterPage(driver);
 		registerPage.clickSignupLink();
 		registerPage.enterEmailAndPassword(email, password);
 		registerPage.clickLoginButton();
-		WaitUtils.visibilityOfElementLocated(driver, By.cssSelector("[class='fa fa-lock']"), 10);
-		String userName =driver.findElement(By.xpath("//li[10]//a[1]")).getText();
+//		WaitUtils.visibilityOfElementLocated(driver, By.cssSelector("[class='fa fa-lock']"), 10);
+		String userName = WaitUtils.visibilityOfElementLocated(driver, By.xpath("//li[10]//a[1]"), 10).getText();
+		System.out.println("test2");
 		System.out.println(userName);
-		
-	
-		
-////		driver.findElement(By.cssSelector("input[data-qa='login-email']")).sendKeys(email);
-//		driver.findElement(By.cssSelector("input[data-qa='login-password']")).sendKeys(password);
-//		driver.findElement(By.cssSelector("[data-qa='login-button']")).click();
 
-		
-		
-		
+	}
+
+	@Test(priority = 3)
+	public void loginNegative() {
+		RegisterPage registerPage = new RegisterPage(driver);
+		registerPage.clickSignupLink();
+		registerPage.enterEmailAndPassword(email, wrongpassword);
+		registerPage.clickLoginButton();
+		String errorMes = WaitUtils
+				.visibilityOfElementLocated(driver, By.xpath("//p[contains(text(),'incorrect')]"), 10).getText();
+		System.out.println("test3");
+		System.out.println(errorMes);
+
 	}
 }
