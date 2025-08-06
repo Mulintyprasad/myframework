@@ -3,15 +3,13 @@ package dp.tests;
 import java.io.IOException;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+
 import org.testng.Assert;
 import org.testng.annotations.Test;
 //import org.testng.asserts.SoftAssert;
 import dp.Base.BaseTest;
 import dp.pageobjects.RegisterPage;
 import dp.utils.WaitUtils;
-import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class ProperTest extends BaseTest{
 	
