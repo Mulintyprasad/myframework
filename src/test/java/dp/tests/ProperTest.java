@@ -58,7 +58,7 @@ public class ProperTest extends BaseTest {
 		registerPage.enterEmailAndPassword(email, password);
 		registerPage.clickLoginButton();
 //		WaitUtils.visibilityOfElementLocated(driver, By.cssSelector("[class='fa fa-lock']"), 10);
-		String userName = WaitUtils.visibilityOfElementLocated(driver, By.xpath("//li[10]//a[1]"), 10).getText();
+		String userName = WaitUtils.waitForElementToBeClickable(driver, By.xpath("//li[10]//a[1]"), 10).getText();
 		System.out.println("test2");
 		System.out.println(userName);
 
