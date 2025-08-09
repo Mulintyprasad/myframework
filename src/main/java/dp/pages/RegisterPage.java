@@ -125,6 +125,7 @@ public class RegisterPage {
 
 	public void clickSignupLink() {
 		signupLink.click();
+		
 	}
 
 	public boolean isNewUserSignupVisible() {

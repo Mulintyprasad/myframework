@@ -1,13 +1,21 @@
 package dp.Base;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.PageLoadStrategy;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
@@ -16,6 +24,9 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 public class BaseTest {
 	public WebDriver driver;
 	public Properties prop;
+	ChromeOptions cOptions = new ChromeOptions();
+	FirefoxOptions fOptions = new FirefoxOptions();
+	EdgeOptions eOptions = new EdgeOptions();
 
 	
 	@BeforeMethod
@@ -26,17 +37,18 @@ public class BaseTest {
 		prop.load(fis);
 		String browserName = prop.getProperty("browser");
 
-		if (browserName.equalsIgnoreCase("chrome")) {
-			WebDriverManager.chromedriver().setup();
-			driver = new ChromeDriver();
-
-		} else if (browserName.equalsIgnoreCase("firefox")) {
-			WebDriverManager.firefoxdriver().setup();
-			driver = new FirefoxDriver();
-
-		} else if (browserName.equalsIgnoreCase("edge")) {
-			WebDriverManager.edgedriver().setup();
-			driver = new EdgeDriver();
+		 if (browserName.equalsIgnoreCase("chrome")) {
+		        WebDriverManager.chromedriver().setup();
+		        cOptions.setPageLoadStrategy(PageLoadStrategy.EAGER);
+		        driver = new ChromeDriver(cOptions);
+		    } else if (browserName.equalsIgnoreCase("firefox")) {
+		        WebDriverManager.firefoxdriver().setup();
+		        fOptions.setPageLoadStrategy(PageLoadStrategy.EAGER);
+		        driver = new FirefoxDriver(fOptions);
+		    } else if (browserName.equalsIgnoreCase("edge")) {
+		        WebDriverManager.edgedriver().setup();
+		        eOptions.setPageLoadStrategy(PageLoadStrategy.EAGER);
+		        driver = new EdgeDriver(eOptions);
 		}else {
 			throw new IllegalArgumentException("Browser not supported:" + browserName);
 		}
@@ -51,12 +63,18 @@ public class BaseTest {
 		driver.quit();
 	}
 	
+	
+	public String getScreenshot(String testCaseName, WebDriver driver) throws IOException {
+		
+		TakesScreenshot ts =(TakesScreenshot) driver;
+		File source = ts.getScreenshotAs(OutputType.FILE);
+		File file=new File(System.getProperty("user.dir")+"//reports//" + testCaseName + ".png" );
+		FileUtils.copyFile(source, file);
+		return System.getProperty("user.dir")+"//reports//" + testCaseName + ".png";
+	}
+	
+	
 
-//	public void launchApp() throws IOException {
-//		initializeDriver();
-//		String url = prop.getProperty("url");
-//		driver.get(url);
-//		driver.manage().window().maximize();
-//	}
+	
 
 }

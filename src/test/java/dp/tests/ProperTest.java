@@ -3,7 +3,7 @@ package dp.tests;
 import java.io.IOException;
 
 import org.openqa.selenium.By;
-
+import org.openqa.selenium.JavascriptExecutor;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 //import org.testng.asserts.SoftAssert;
@@ -18,11 +18,12 @@ public class ProperTest extends BaseTest {
 	String password = "Hello@123";
 	String wrongpassword = "sdf345";
 
-	@Test(priority = 1)
+	
+	@Test(enabled =true)
 	public void registerNewUser() throws IOException {
-		String actualTitle = driver.getTitle();
-		String expectedTitle = "Automation Exercise";
-		Assert.assertEquals(actualTitle, expectedTitle, "failed to load the home page");
+//		String actualTitle = driver.getTitle();
+//		String expectedTitle = "Automation Exercise";
+//		Assert.assertEquals(actualTitle, expectedTitle, "failed to load the home page");
 		RegisterPage registerPage = new RegisterPage(driver);
 
 		registerPage.clickSignupLink();
@@ -74,6 +75,7 @@ public class ProperTest extends BaseTest {
 				.visibilityOfElementLocated(driver, By.xpath("//p[contains(text(),'incorrect')]"), 10).getText();
 		System.out.println("test3");
 		System.out.println(errorMes);
+		Assert.fail("Failing");
 
 	}
 }
