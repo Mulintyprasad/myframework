@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="Suite" parallel="tests" thread-count="4">
+<suite name="Suite" parallel="tests" thread-count="2">
 
-<listeners>
-<listener class-name="dp.Base.Listeners"/>
-</listeners>
-  <test name="Proper prior Test">
-    <classes>
-      <class name="dp.tests.ProperTest"/>
-    </classes>
-  </test>
-  
-   <test name="product tests">
-    <classes>
-      <class name="dp.tests.Productscatalogue"/>
-    </classes>
-  </test>
+	<listeners>
+		<listener class-name="dp.Base.Listeners" />
+	</listeners>
+	<test name="Proper prior Test">
+		<classes>
+			<class name="dp.tests.ProperTest" />
+		</classes>
+	</test>
+
+	<test name="product tests">
+		<classes>
+			<class name="dp.tests.Productscatalogue" />
+		</classes>
+	</test>
 </suite>
