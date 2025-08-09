@@ -33,6 +33,8 @@ public class Productscatalogue extends BaseTest {
 				.getText();
 //		String toast = driver.findElement(By.cssSelector(".modal-content div h4")).getText();
 		Assert.assertEquals(toast, "Added!");
+		System.out.println("productcatalouge test ");
+
 	}
 
 }
