@@ -23,7 +23,7 @@ public class Listeners extends BaseTest implements ITestListener {
 	}
 
 	public void onTestSuccess(ITestResult result) {
-		test.log(Status.PASS, "Test passed");
+		test.log(Status.PASS, "Test passed eeeyyuuu");
 	}
 
 	public void onTestFailure(ITestResult result) {

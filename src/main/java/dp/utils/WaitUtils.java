@@ -31,4 +31,14 @@ public class WaitUtils {
 	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeoutSeconds));
 	    return wait.until(ExpectedConditions.visibilityOf(element));
 	}
+	
+	public static WebElement presenceOfElementLocated(WebDriver driver, By locator, int timeoutSeconds) {
+	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeoutSeconds));
+	    return wait.until(ExpectedConditions.presenceOfElementLocated(locator));
+	}
+	
+    public static Boolean waitForElementToBeInvisible(WebDriver driver, By locator, int timeoutSeconds) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeoutSeconds));
+        return wait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
+    }
 }
