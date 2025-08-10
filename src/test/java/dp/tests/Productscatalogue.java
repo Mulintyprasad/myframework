@@ -56,7 +56,7 @@ public class Productscatalogue extends BaseTest {
 
 	}
 	
-		@Test(enabled=false)
+		@Test(enabled=true)
 		public void verifyCartPage() {
 			
 			String email = "MPRASAD@gmail.com";
