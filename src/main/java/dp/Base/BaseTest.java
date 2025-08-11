@@ -18,7 +18,6 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class BaseTest {
@@ -27,6 +26,7 @@ public class BaseTest {
 	ChromeOptions cOptions = new ChromeOptions();
 	FirefoxOptions fOptions = new FirefoxOptions();
 	EdgeOptions eOptions = new EdgeOptions();
+	
 
 	
 	@BeforeMethod
@@ -55,6 +55,7 @@ public class BaseTest {
 		
 		driver.get(prop.getProperty("url"));
         driver.manage().window().maximize();
+        
 	}
 	
 	@AfterMethod

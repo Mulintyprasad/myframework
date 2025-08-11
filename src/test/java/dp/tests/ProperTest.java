@@ -74,7 +74,7 @@ public class ProperTest extends BaseTest {
 				.visibilityOfElementLocated(driver, By.xpath("//p[contains(text(),'incorrect')]"), 10).getText();
 		System.out.println("test3");
 		System.out.println(errorMes);
-		Assert.fail("Failing");
+		Assert.assertEquals(errorMes,"Your email or password is incorrect!");
 
 	}
 }

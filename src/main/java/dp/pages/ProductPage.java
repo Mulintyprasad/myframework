@@ -36,11 +36,14 @@ public class ProductPage {
 	@FindBy(xpath="//u[text()='View Cart']")
 	private WebElement viewCart;
 	
+	
+	@FindBy(xpath="//a[@href='/view_cart']")
+	private WebElement cartHeader;
+	
 	@FindBy(xpath="//button[text()='Continue Shopping']")
 	private WebElement continueShopping;
 	
-	@FindBy(xpath = "//tbody//tr//td[@class='cart_description']//a")
-	List<WebElement> productsinCart;
+	
 	
 	@FindBy(xpath="//a[contains(@class,'check_out')]")
 	private WebElement checkoutBtn;
@@ -81,12 +84,7 @@ public class ProductPage {
 		return prod;
 	}
 
-	public WebElement getProductsInCart(String productName) {
 
-		WebElement cartProd = productsinCart.stream().filter(product -> product.getText().contains(productName)).findFirst()
-				.orElse(null);
-		return cartProd;
-	}	
 	
 		public void addProductToCart(String productName) {
 			WebElement prod = getProductByName(productName);
@@ -101,8 +99,10 @@ public class ProductPage {
     return(WaitUtils.visibilityOfElementLocated(driver, toastMes, 10).getText());
 	}
 
-		
 	public void goToCart() {
+		WaitUtils.waitForElementToBeClickable(driver, cartHeader, 10).click();
+	}
+	public void goToViewCart() {
 		WaitUtils.visibilityOfElementLocated(driver, viewCart, 10).click();
 	}
 	
