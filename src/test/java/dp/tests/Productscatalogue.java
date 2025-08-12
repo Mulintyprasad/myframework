@@ -15,7 +15,7 @@ public class Productscatalogue extends BaseTest {
 
 	String productName = "Men Tshirt";
 
-	@Test(priority=1)
+	@Test
 	public void addProdToCart() throws InterruptedException {
 		// Verify the products added to cart shouldn't be able to checkout without
 		// login/registering
@@ -33,7 +33,7 @@ public class Productscatalogue extends BaseTest {
 				"Register/Login button should be displayed when checking out without logging in");
 	}
 
-	@Test(priority=2)
+	@Test
 	public void verifyCartPage() {
 		// login and verify if the same product added is reflecting in cart page
 		// and able to checkout
@@ -54,7 +54,7 @@ public class Productscatalogue extends BaseTest {
 
 	}
 
-	@Test(dependsOnMethods= {"verifyCartPage"})
+	@Test
 	public void checkOutCartAndPayment() throws InterruptedException {
 		String email = "MPRASAD@gmail.com";
 		String password = "Hello@123";

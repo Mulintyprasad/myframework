@@ -96,7 +96,7 @@ public class ProductPage {
 		
 	
 	public String getToastMes() {
-    return(WaitUtils.visibilityOfElementLocated(driver, toastMes, 10).getText());
+    return(WaitUtils.waitForElementToBeClickable(driver, toastMes, 10).getText());
 	}
 
 	public void goToCart() {
