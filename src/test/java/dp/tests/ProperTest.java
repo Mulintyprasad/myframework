@@ -7,6 +7,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 //import org.testng.asserts.SoftAssert;
 import dp.Base.BaseTest;
+import dp.Base.Retry;
 import dp.pages.RegisterPage;
 import dp.utils.WaitUtils;
 
@@ -64,7 +65,7 @@ public class ProperTest extends BaseTest {
 
 	}
 
-	@Test(priority = 3)
+	@Test(retryAnalyzer=Retry.class)
 	public void loginNegative() {
 		RegisterPage registerPage = new RegisterPage(driver);
 		registerPage.clickSignupLink();
@@ -74,7 +75,7 @@ public class ProperTest extends BaseTest {
 				.visibilityOfElementLocated(driver, By.xpath("//p[contains(text(),'incorrect')]"), 10).getText();
 		System.out.println("test3");
 		System.out.println(errorMes);
-		Assert.assertEquals(errorMes,"Your email or password is incorrect!");
+		Assert.assertEquals(errorMes,"Your  or password is incorrect!");
 
 	}
 }

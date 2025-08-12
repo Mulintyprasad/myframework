@@ -16,19 +16,18 @@ import dp.utils.ExtentReporter;
 public class Listeners extends BaseTest implements ITestListener {
 	ExtentTest test;
 	ExtentReports extent = ExtentReporter.getReport();
-
+	ThreadLocal<ExtentTest> threadLocal=new ThreadLocal<ExtentTest>();
 	public void onTestStart(ITestResult result) {
 		test = extent.createTest(result.getMethod().getMethodName());
-
+		threadLocal.set(test);
 	}
 
 	public void onTestSuccess(ITestResult result) {
-		test.log(Status.PASS, "Test passed eeeyyuuu");
+		threadLocal.get().log(Status.PASS, "Test passed eeeyyuuu");
 	}
 
 	public void onTestFailure(ITestResult result) {
-
-		test.fail(result.getThrowable());
+		threadLocal.get().fail(result.getThrowable());
 
 		try {
 			driver = (WebDriver) result.getTestClass().getRealClass().getField("driver").get(result.getInstance());
@@ -42,7 +41,7 @@ public class Listeners extends BaseTest implements ITestListener {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		test.addScreenCaptureFromPath(filePath, result.getMethod().getMethodName());
+		threadLocal.get().addScreenCaptureFromPath(filePath, result.getMethod().getMethodName());
 	}
 
 	public void onFinish(ITestContext context) {
