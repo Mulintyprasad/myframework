@@ -1,4 +1,4 @@
-package dp.utils;
+package dp.testutils;
 
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;

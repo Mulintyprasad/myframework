@@ -5,21 +5,20 @@ import java.io.IOException;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-//import org.testng.asserts.SoftAssert;
-import dp.Base.BaseTest;
-import dp.Base.Retry;
+
 import dp.pages.RegisterPage;
-import dp.utils.WaitUtils;
+import dp.Base.BaseTest;
+import dp.testutils.Retry;
+import dp.testutils.WaitUtils;
 
 public class ProperTest extends BaseTest {
 
 	String email = "MPRASAD@gmail.com";
-
 	String password = "Hello@123";
 	String wrongpassword = "sdf345";
 
 	
-	@Test(enabled =true)
+	@Test
 	public void registerNewUser() throws IOException {
 //		String actualTitle = driver.getTitle();
 //		String expectedTitle = "Automation Exercise";
@@ -75,7 +74,7 @@ public class ProperTest extends BaseTest {
 				.visibilityOfElementLocated(driver, By.xpath("//p[contains(text(),'incorrect')]"), 10).getText();
 		System.out.println("test3");
 		System.out.println(errorMes);
-		Assert.assertEquals(errorMes,"Your  or password is incorrect!");
+		Assert.assertEquals(errorMes,"Your email or password is incorrect!");
 
 	}
 }

@@ -9,7 +9,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import org.testng.asserts.SoftAssert;
 
-import dp.utils.WaitUtils;
+import dp.testutils.WaitUtils;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
