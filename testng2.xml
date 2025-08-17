@@ -3,7 +3,7 @@
 <suite name="Suite" parallel="tests" thread-count="4">
 
 	<listeners>
-		<listener class-name="dp.Base.Listeners" />
+		<listener class-name="dp.testutils.Listeners" />
 	</listeners>
 	<test name="Proper prior Test">
 		<classes>

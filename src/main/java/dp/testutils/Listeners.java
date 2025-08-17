@@ -1,4 +1,4 @@
-package dp.Base;
+package dp.testutils;
 
 import java.io.IOException;
 
@@ -11,9 +11,7 @@ import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 
-import dp.utils.ExtentReporter;
-
-public class Listeners extends BaseTest implements ITestListener {
+public class Listeners extends ScreenshotUtils implements ITestListener {
 	ExtentTest test;
 	ExtentReports extent = ExtentReporter.getReport();
 	ThreadLocal<ExtentTest> threadLocal=new ThreadLocal<ExtentTest>();

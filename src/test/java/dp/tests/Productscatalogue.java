@@ -5,9 +5,9 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import dp.Base.BaseTest;
 import dp.pages.ProductPage;
 import dp.pages.RegisterPage;
+import dp.Base.BaseTest;
 import dp.pages.CartPage;
 import dp.pages.CheckOutPage;
 
