@@ -27,8 +27,9 @@ public class BaseTest {
 		Properties prop = new Properties();
 		FileInputStream fis = new FileInputStream(System.getProperty("user.dir") + "\\config.properties");
 		prop.load(fis);
-		String browserName = prop.getProperty("browser");
-
+		
+		String browserName = System.getProperty("browser")!=null ? System.getProperty("browser"):prop.getProperty("browser");
+		
 		 if (browserName.equalsIgnoreCase("chrome")) {
 		        WebDriverManager.chromedriver().setup();
 		        cOptions.setPageLoadStrategy(PageLoadStrategy.EAGER);
@@ -38,9 +39,9 @@ public class BaseTest {
 		        fOptions.setPageLoadStrategy(PageLoadStrategy.EAGER);
 		        driver = new FirefoxDriver(fOptions);
 		    } else if (browserName.equalsIgnoreCase("edge")) {
-		        WebDriverManager.edgedriver().setup();
+				System.setProperty("webdriver.edge.driver", "C:\\Users\\durga\\Downloads\\edgedriver_win64\\msedgedriver.exe");
 		        eOptions.setPageLoadStrategy(PageLoadStrategy.EAGER);
-		        driver = new EdgeDriver(eOptions);
+		        driver = new EdgeDriver();
 		}else {
 			throw new IllegalArgumentException("Browser not supported:" + browserName);
 		}

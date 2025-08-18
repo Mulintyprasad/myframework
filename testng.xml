@@ -3,7 +3,7 @@
 <suite name="Suite">
   <test thread-count="5" name="Productscatalogue">
     <classes>
-      <class name="dp.tests.Productscatalogue"/>
+      <class name="dp.tests.ProperTest"/>
     </classes>
   </test>
 </suite>
