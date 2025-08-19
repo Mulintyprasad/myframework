@@ -21,45 +21,45 @@ public class BaseTest {
 	ChromeOptions cOptions = new ChromeOptions();
 	FirefoxOptions fOptions = new FirefoxOptions();
 	EdgeOptions eOptions = new EdgeOptions();
-	
+
 	@BeforeMethod
 	public void initializeDriverAndLaunchApp() throws IOException {
 		Properties prop = new Properties();
 		FileInputStream fis = new FileInputStream(System.getProperty("user.dir") + "\\config.properties");
 		prop.load(fis);
-		
-		String browserName = System.getProperty("browser")!=null ? System.getProperty("browser"):prop.getProperty("browser");
-		
-		 if (browserName.equalsIgnoreCase("chrome")) {
-		        WebDriverManager.chromedriver().setup();
-		        cOptions.setPageLoadStrategy(PageLoadStrategy.EAGER);
-		        driver = new ChromeDriver(cOptions);
-		    } else if (browserName.equalsIgnoreCase("firefox")) {
-		        WebDriverManager.firefoxdriver().setup();
-		        fOptions.setPageLoadStrategy(PageLoadStrategy.EAGER);
-		        driver = new FirefoxDriver(fOptions);
-		    } else if (browserName.equalsIgnoreCase("edge")) {
-				System.setProperty("webdriver.edge.driver", "C:\\Users\\durga\\Downloads\\edgedriver_win64\\msedgedriver.exe");
-		        eOptions.setPageLoadStrategy(PageLoadStrategy.EAGER);
-		        driver = new EdgeDriver();
-		}else {
+
+		String browserName = System.getProperty("browser") != null ? System.getProperty("browser")
+				: prop.getProperty("browser");
+
+		if (browserName.contains("chrome")) {
+			WebDriverManager.chromedriver().setup();
+			cOptions.setPageLoadStrategy(PageLoadStrategy.EAGER);
+			if (browserName.contains("headless")) {
+				cOptions.addArguments("headless");
+			}
+			driver = new ChromeDriver(cOptions);
+		} else if (browserName.equalsIgnoreCase("firefox")) {
+			WebDriverManager.firefoxdriver().setup();
+			fOptions.setPageLoadStrategy(PageLoadStrategy.EAGER);
+			driver = new FirefoxDriver(fOptions);
+		} else if (browserName.equalsIgnoreCase("edge")) {
+			System.setProperty("webdriver.edge.driver",
+					"C:\\Users\\durga\\Downloads\\edgedriver_win64\\msedgedriver.exe");
+			eOptions.setPageLoadStrategy(PageLoadStrategy.EAGER);
+			driver = new EdgeDriver();
+		} else {
 			throw new IllegalArgumentException("Browser not supported:" + browserName);
 		}
-		
+
 		driver.get(prop.getProperty("url"));
-        driver.manage().window().maximize();
-        
+		driver.manage().window().maximize();
+
 	}
-	
+
 	@AfterMethod
 	public void TearDown() {
-		
+
 		driver.quit();
 	}
-	
-
-	
-
-	
 
 }

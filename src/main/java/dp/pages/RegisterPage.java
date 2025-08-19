@@ -1,5 +1,6 @@
 package dp.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -120,7 +121,10 @@ public class RegisterPage {
 
 	@FindBy(xpath = "//a[contains(text(),'Continue')]")
 	private WebElement continueAfterDeleteButton;
+	
+	By frameId= By.id("aswift_3");
 
+	
 	// Actions for page
 
 	public void clickSignupLink() {
@@ -194,7 +198,9 @@ public class RegisterPage {
 	}
 
 	public void clickCreateAccount() {
-		createAccountButton.click();
+	 
+	    WaitUtils.waitForElementToBeInvisible(driver, frameId, 10);
+	    createAccountButton.click();
 	}
 
 	public boolean isAccountCreatedVisible() {

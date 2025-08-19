@@ -25,15 +25,17 @@ public class Productscatalogue extends BaseTest {
 		Assert.assertTrue(productPage.validateMenTshirtHeader());
 		productPage.getProductByName(productName);
 		productPage.addProductToCart(productName);
-		Assert.assertEquals(productPage.getToastMes(), "Added!");
-		System.out.println(productPage.getToastMes());
+		String actualToastMes = productPage.getToastMes();
+		String expectedToastMes = "Your product has been added to cart.";
+		Assert.assertEquals(actualToastMes,expectedToastMes);
+//		System.out.println(productPage.getToastMes());
 		productPage.goToViewCart();
 		productPage.goToCheckOut();
 		Assert.assertTrue(productPage.askToRegisterOrLogin(),
 				"Register/Login button should be displayed when checking out without logging in");
 	}
 
-	@Test
+	@Test(enabled=true)
 	public void verifyCartPage() {
 		// login and verify if the same product added is reflecting in cart page
 		// and able to checkout
@@ -54,7 +56,7 @@ public class Productscatalogue extends BaseTest {
 
 	}
 
-	@Test
+	@Test(enabled=true)
 	public void checkOutCartAndPayment() throws InterruptedException {
 		String email = "MPRASAD@gmail.com";
 		String password = "Hello@123";
