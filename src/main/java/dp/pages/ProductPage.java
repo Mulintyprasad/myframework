@@ -53,8 +53,8 @@ public class ProductPage {
 	
 	
 	By addT0Cart = By.cssSelector(".btn");
-	By toastMes = By.cssSelector(".modal-content div h4");
-	By byProductsLink = By.cssSelector("i[class*=' card_travel']");
+	By toastMes = By.xpath("//div[@class='modal-body']//p[contains(text(),'added to cart')]");
+	By byProductsLink = By.cssSelector("a[href*='/products']");
 
 	@FindBy(xpath = "//div[@class='features_items']/div[@class='col-sm-4']")
 	List<WebElement> productsOnPage;
@@ -96,7 +96,7 @@ public class ProductPage {
 		
 	
 	public String getToastMes() {
-    return(WaitUtils.waitForElementToBeClickable(driver, toastMes, 10).getText());
+    return(WaitUtils.visibilityOfElementLocated(driver, toastMes, 10).getText());
 	}
 
 	public void goToCart() {
